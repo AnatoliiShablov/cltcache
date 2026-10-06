@@ -127,7 +127,7 @@ def extract_compilation_args(clang_tidy_call, config):
 
     for clang_tidy_arg in clang_tidy_args:
         if clang_tidy_arg.startswith("-p="):
-            compile_commands_file = clang_tidy_arg[3:]
+            compile_commands_file = pathlib.Path(clang_tidy_arg[3:]) / "compile_commands.json"
 
     if compile_commands_file is None:
         raise Exception(
